@@ -1,6 +1,7 @@
 package logic;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,8 +10,10 @@ public class Transcription {
         Map cyrillicToLatinMap = createCyrillicToLatinMap();
 
         try (
-                BufferedReader reader = new BufferedReader(new FileReader(inputFilePath));
-                BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath))
+                BufferedReader reader = new BufferedReader(
+                        new InputStreamReader(new FileInputStream(inputFilePath), StandardCharsets.UTF_8));
+                BufferedWriter writer = new BufferedWriter(
+                        new OutputStreamWriter(new FileOutputStream(outputFilePath), StandardCharsets.UTF_8))
         )
         {
             String nextLine;
